@@ -1,6 +1,6 @@
 #!/bin/bash
 source "./validators.sh"
-source "./gcloud-operations.sh"
+source "./gcloud.sh"
 
 IFS=,
 
