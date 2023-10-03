@@ -1,4 +1,4 @@
-source "./colors.sh"
+source "./bin/colors.sh"
 
 
 function gcloud_is_configured {

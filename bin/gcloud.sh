@@ -1,4 +1,4 @@
-source "./colors.sh"
+source "./bin/colors.sh"
 
 
 function load_digests_for_image {
