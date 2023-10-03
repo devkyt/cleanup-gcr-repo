@@ -19,7 +19,6 @@ runs:
       id: delete_images
       run: |
         cd ${{ github.action_path }}
-        # chmod +x ./bin/main.sh
-        # ./bin/main.sh -i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }}
-        echo "-i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }}"
+        chmod +x ./bin/main.sh
+        ./bin/main.sh -i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }}
       shell: bash
