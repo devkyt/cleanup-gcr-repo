@@ -4,19 +4,23 @@ source "./bin/colors.sh"
 function load_digests_for_image {
     local image_link=$1
     shift
+    
     local dates=($@)
 
     case ${#dates[@]} in 
+        1)
+        filter_criteria="timestamp.datetime<${dates[0]}";; 
         2)
         filter_criteria="timestamp.datetime>=${dates[1]} AND timestamp.datetime<${dates[0]}";;
         *)
-        filter_criteria="timestamp.datetime<${dates[0]}";;
+        filter_criteria=""
     esac
 
     echo $( gcloud container images list-tags $image_link \
         --format="get(digest)" \
         --filter="$filter_criteria" \
         --sort-by="timestamp")
+
 }
 
 

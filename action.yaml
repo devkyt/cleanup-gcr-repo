@@ -20,5 +20,5 @@ runs:
       run: |
         cd ${{ github.action_path }}
         chmod +x ./bin/main.sh
-        ./bin/main.sh -i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }}
+        ./bin/main.sh -i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }} -k 5
       shell: bash

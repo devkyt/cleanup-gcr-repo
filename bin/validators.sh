@@ -14,16 +14,22 @@ function input_args_is_valid {
 
     local image_link=$1
     shift
+
+    local keep=$1
+    shift
+    
     local dates=($@)
 
     image_link_is_valid $image_link || exit 1
 
-    dates_range_is_valid ${dates[@]} || exit 1
+    is_date_exist ${dates[@]} || exit 1
 
     for date in ${dates[@]}
     do  
         date_format_is_valid $date || exit 1
     done
+
+    is_number $keep || exit 1
 
 }
 
@@ -44,7 +50,7 @@ function image_link_is_valid {
 }
 
 
-function dates_range_is_valid {
+function is_date_exist {
 
     local dates=($@)
 
@@ -72,4 +78,17 @@ function date_format_is_valid {
     fi
 
 }
+
+
+function is_number {
+
+    if [[ ! $1 =~ ^([0-9]*)$ ]];
+    then
+        echo -e "${BoldRed}Keep value must be a number. Got $1 instead"
+        exit 1
+    fi
+
+}
+
+
 
