@@ -1,24 +1,28 @@
-name: "Cleanup Google Cloud Registry"
+name: Cleanup Google Cloud Registry
 inputs:
   IMAGE:
-    description: "A link to an image repo in the Google Cloud Registry"
+    description: A link to an image repo in the Google Cloud Registry
     required: true
     type: string
   TO_DATE:
-    description: "Date by which images in repo must be deleted"
-    required: true
-    type: string
-  FROM_DATE:
-    description: "Date from which images in repo must be deleted"
+    description: Date by which images in repo must be deleted
     required: false
     type: string
+  FROM_DATE:
+    description: Date from which images in repo must be deleted
+    required: false
+    type: string
+  KEEP:
+    description: How many images to keep
+    required: false
+    type: number
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - name: "Delete Images"
+    - name: Delete Images
       id: delete_images
       run: |
         cd ${{ github.action_path }}
         chmod +x ./bin/main.sh
-        ./bin/main.sh -i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }} -k 5
+        ./bin/main.sh -i ${{ inputs.IMAGE }} -d ${{ inputs.TO_DATE }},${{ inputs.FROM_DATE }} -k ${{ inputs.KEEP }}
       shell: bash
