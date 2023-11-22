@@ -15,7 +15,7 @@ inputs:
   KEEP:
     description: How many images to keep
     required: false
-    type: number
+    type: string
 runs:
   using: composite
   steps:
